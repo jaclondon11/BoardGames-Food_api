@@ -7,8 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
-@Entity(name = "Producto")
-@NamedQuery(name = "Producto.findByCodigo", query = "SELECT producto FROM Producto producto WHERE producto.codigo = :codigo")
+@Entity(name = "Mesa")
+@NamedQuery(name = "Mesa.findByCodigo", query = "SELECT mesa FROM Mesa mesa WHERE mesa.codigo = :codigo")
 public class MesaEntity {
 
 	@Id
@@ -18,11 +18,6 @@ public class MesaEntity {
 	@Column(nullable = false)
 	private String codigo;
 	
-	@Column(nullable = false)
-	private String nombre;
-
-	@Column(nullable = false)
-	private double precio;
 
 	public Long getId() {
 		return id;
@@ -40,20 +35,4 @@ public class MesaEntity {
 		this.codigo = codigo;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-	
 }

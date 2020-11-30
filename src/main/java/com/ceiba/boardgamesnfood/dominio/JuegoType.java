@@ -8,7 +8,6 @@ public enum JuegoType {
 	ULTIMATE_WEREWOLF("Ultimate Werewolf", 7, 60, 20),
 	TICKET_TO_RIDE_EUROPE("Ticket To Ride Europe", 2, 5, 90);
 	
-
 	private final String nombre;
 	private final int cantidadJugadoresMinima;
 	private final int cantidadJugadoresMaxima;

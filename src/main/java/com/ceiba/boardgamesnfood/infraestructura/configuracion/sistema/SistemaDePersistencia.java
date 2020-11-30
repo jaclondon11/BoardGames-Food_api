@@ -2,11 +2,11 @@ package com.ceiba.boardgamesnfood.infraestructura.configuracion.sistema;
 
 import javax.persistence.EntityManager;
 
+import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioReserva;
-import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioProducto;
 import com.ceiba.boardgamesnfood.infraestructura.configuracion.conexion.ConexionJPA;
+import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.RepositorioMesaPersistente;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.RepositorioReservaPersistente;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.RepositorioProductoPersistente;
 
 public class SistemaDePersistencia {
 
@@ -16,8 +16,8 @@ public class SistemaDePersistencia {
 		this.entityManager = new ConexionJPA().createEntityManager();
 	}
 
-	public RepositorioProducto obtenerRepositorioProductos() {
-		return new RepositorioProductoPersistente(entityManager);
+	public RepositorioMesa obtenerRepositorioProductos() {
+		return new RepositorioMesaPersistente(entityManager);
 	}
 	
 	public RepositorioReserva obtenerRepositorioGarantia() {

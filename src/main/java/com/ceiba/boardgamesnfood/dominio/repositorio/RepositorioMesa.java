@@ -2,17 +2,17 @@ package com.ceiba.boardgamesnfood.dominio.repositorio;
 
 import com.ceiba.boardgamesnfood.dominio.Mesa;
 
-public interface RepositorioProducto {
+public interface RepositorioMesa {
 
 	/**
-	 * Permite obtener un producto dado un codigo
+	 * Permite obtener una mesa dado un codigo
 	 * @param codigo
 	 * @return
 	 */
 	Mesa obtenerPorCodigo(String codigo);
 
 	/**
-	 * Permite agregar un producto al repositorio
+	 * Permite agregar una mesa al repositorio
 	 * @param producto
 	 */
 	void agregar(Mesa producto);

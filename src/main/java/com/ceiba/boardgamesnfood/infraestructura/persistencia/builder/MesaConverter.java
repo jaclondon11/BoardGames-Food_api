@@ -17,13 +17,14 @@ public class MesaConverter {
 
 		return mesa;
 	}
+	
 
 	public static MesaEntity convertirAEntity(Mesa mesa) {
-		MesaEntity productoEntity = new MesaEntity();
+		MesaEntity mesaEntity = new MesaEntity();
 		
-		productoEntity.setId(mesa.getId());
-		productoEntity.setCodigo(mesa.getCodigo());
+		mesaEntity.setId(mesa.getId());
+		mesaEntity.setCodigo(mesa.getCodigo());
 
-		return productoEntity;
+		return mesaEntity;
 	}
 }

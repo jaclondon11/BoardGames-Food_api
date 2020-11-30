@@ -2,13 +2,13 @@ package com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.jpa;
 
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity;
 
-public interface RepositorioProductoJPA {
+public interface RepositorioMesaJPA {
 
 	/**
-	 * Permite obtener un producto entity por un codigo
+	 * Permite obtener una mesa entity por un codigo
 	 * @param codigo
 	 * @return
 	 */
-	MesaEntity obtenerProductoEntityPorCodigo(String codigo);
+	MesaEntity obtenerMesaEntityPorCodigo(String codigo);
 
 }

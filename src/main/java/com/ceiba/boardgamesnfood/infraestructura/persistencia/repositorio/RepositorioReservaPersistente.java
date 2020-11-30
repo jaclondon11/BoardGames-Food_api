@@ -7,14 +7,12 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
-import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioProducto;
+import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioReserva;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.builder.MesaConverter;
+import com.ceiba.boardgamesnfood.infraestructura.persistencia.builder.MesaReservaConverter;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.ReservaEntity;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.jpa.RepositorioProductoJPA;
+import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.jpa.RepositorioMesaJPA;
 
 @Repository
 public class RepositorioReservaPersistente implements RepositorioReserva {
@@ -24,39 +22,33 @@ public class RepositorioReservaPersistente implements RepositorioReserva {
 
 	private EntityManager entityManager;
 
-	private RepositorioProductoJPA repositorioProductoJPA;
+	@SuppressWarnings("unused")
+	private RepositorioMesaJPA repositorioMesaJPA;
 
-	public RepositorioReservaPersistente(EntityManager entityManager, RepositorioProducto repositorioProducto) {
+	public RepositorioReservaPersistente(EntityManager entityManager, RepositorioMesa repositorioMesa) {
 		this.entityManager = entityManager;
-		this.repositorioProductoJPA = (RepositorioProductoJPA) repositorioProducto;
+		this.repositorioMesaJPA = (RepositorioMesaJPA) repositorioMesa;
 	}
 	
 	@Override
 	public Reserva obtener(String id) {
 		
 		ReservaEntity reserva = obtenerReservaEntityPorId(id);
-
 		return reserva == null ? null
 				: new Reserva(
-						MesaConverter.convertirADominio(reserva.getProducto()),
-						reserva.g,
-						reserva.getFechaFinGarantia(),
-						reserva.getPrecio(),
-						reserva.getNombreCliente());
+						MesaReservaConverter.convertirADominioSet(reserva.getMesasReserva()),
+						reserva.getFechaInicioReserva(),
+						reserva.getFechaFinReserva(),
+						reserva.getCantidadPersonas(),
+						reserva.getTitular(),
+						reserva.getJuego());
 	}
 
 	@Override
-	public void agregar(Reserva garantia) {
-		ReservaEntity garantiaEntity = buildGarantiaExtendidaEntity(garantia);
-		entityManager.persist(garantiaEntity);
+	public void agregar(Reserva reserva) {
+		ReservaEntity reservaEntity = buildReservaEntity(reserva);
+		entityManager.persist(reservaEntity);
 		
-	}
-	
-	@Override
-	public Mesa obtenerProductoConGarantiaPorCodigo(String codigo) {
-		
-		ReservaEntity garantiaEntity = obtenerReservaEntityPorId(codigo);
-      		return MesaConverter.convertirADominio(garantiaEntity != null ? garantiaEntity.getProducto() : null);
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -70,17 +62,17 @@ public class RepositorioReservaPersistente implements RepositorioReserva {
 		return !resultList.isEmpty() ? (ReservaEntity) resultList.get(0) : null;
 	}
 
-	private ReservaEntity buildGarantiaExtendidaEntity(Reserva garantia) {
+	private ReservaEntity buildReservaEntity(Reserva reserva) {
 
-		MesaEntity productoEntity = repositorioProductoJPA.obtenerProductoEntityPorCodigo(garantia.getProducto().getCodigo());
-
-		ReservaEntity garantiaEntity = new ReservaEntity();
-		garantiaEntity.setProducto(productoEntity);
-		garantiaEntity.setFechaSolicitudGarantia(garantia.getFechaSolicitudGarantia());
-		garantiaEntity.setFechaFinGarantia(garantia.getFechaFinGarantia());
-		garantiaEntity.setNombreCliente(garantia.getNombreCliente());
-		garantiaEntity.setPrecio(garantia.getPrecioGarantia());
 		
-		return garantiaEntity;
+		ReservaEntity reservaEntity = new ReservaEntity();
+		reservaEntity.setMesas(MesaReservaConverter.convertirAEntitySet(reserva.getMesas()));
+		reservaEntity.setFechaInicioReserva(reserva.getFechaInicioReserva());
+		reservaEntity.setFechaFinReserva(reserva.getFechaFinReserva());
+		reservaEntity.setCantidadPersonas(reserva.getCantidadPersonas());
+		reservaEntity.setTitular(reserva.getTitular());
+		reservaEntity.setJuego(reserva.getJuego());
+		
+		return null;
 	}
 }

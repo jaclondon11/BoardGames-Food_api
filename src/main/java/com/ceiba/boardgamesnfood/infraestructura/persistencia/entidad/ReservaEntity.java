@@ -1,14 +1,16 @@
 package com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import com.ceiba.boardgamesnfood.dominio.JuegoType;
 
@@ -20,17 +22,23 @@ public class ReservaEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "ID_MESA", referencedColumnName = "id")
-	private MesaEntity mesa;
-
-	private Date fechaReserva;
+	private Date fechaInicioReserva;
+	
+	private Date fechaFinReserva;
 
 	private int cantidadPersonas;
 
 	private String titular;
 
 	private JuegoType juego;
+	
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			mappedBy = "mesasReserva",
+			orphanRemoval = true,
+			fetch = FetchType.EAGER)
+	private Set<MesasReservaEntity> mesas;
+
 
 	public Long getId() {
 		return id;
@@ -39,21 +47,21 @@ public class ReservaEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public MesaEntity getMesa() {
-		return mesa;
+	
+	public Date getFechaInicioReserva() {
+		return fechaInicioReserva;
 	}
 
-	public void setMesa(MesaEntity mesa) {
-		this.mesa = mesa;
+	public void setFechaInicioReserva(Date fechaInicioReserva) {
+		this.fechaInicioReserva = fechaInicioReserva;
 	}
 
-	public Date getFechaReserva() {
-		return fechaReserva;
+	public Date getFechaFinReserva() {
+		return fechaFinReserva;
 	}
 
-	public void setFechaReserva(Date fechaReserva) {
-		this.fechaReserva = fechaReserva;
+	public void setFechaFinReserva(Date fechaFinReserva) {
+		this.fechaFinReserva = fechaFinReserva;
 	}
 
 	public int getCantidadPersonas() {
@@ -78,6 +86,18 @@ public class ReservaEntity {
 
 	public void setJuego(JuegoType juego) {
 		this.juego = juego;
+	}
+	
+	public Set<MesasReservaEntity> getMesas() {
+		return mesas;
+	}
+
+	public void setMesas(Set<MesasReservaEntity> mesas) {
+		this.mesas = mesas;
+	}
+
+	public Set<MesasReservaEntity> getMesasReserva() {
+		return mesas;
 	}
 
 }

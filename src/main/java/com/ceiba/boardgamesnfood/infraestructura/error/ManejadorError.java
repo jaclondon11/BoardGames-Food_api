@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.ceiba.boardgamesnfood.dominio.excepcion.GarantiaCodigoProductoPorVocalesException;
 import com.ceiba.boardgamesnfood.dominio.excepcion.GarantiaExtendidaException;
-import com.ceiba.boardgamesnfood.dominio.excepcion.ProductoNoEncontradoException;
+import com.ceiba.boardgamesnfood.dominio.excepcion.MesaNoEncontradaException;
 
 @ControllerAdvice
 public class ManejadorError extends ResponseEntityExceptionHandler {
@@ -21,7 +21,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
 
     public ManejadorError() {
         CODIGOS_ESTADO.put(GarantiaExtendidaException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
-        CODIGOS_ESTADO.put(ProductoNoEncontradoException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
+        CODIGOS_ESTADO.put(MesaNoEncontradaException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
         CODIGOS_ESTADO.put(GarantiaCodigoProductoPorVocalesException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         
         //en caso de tener otra excepcion matricularla aca

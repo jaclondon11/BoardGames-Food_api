@@ -1,11 +1,13 @@
 package com.ceiba.boardgamesnfood.dominio;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Reserva {
 
-	private Mesa mesa;
-	private Date fechaReserva;
+	private Set<MesasReserva> mesas;
+	private Date fechaInicioReserva;
+	private Date fechaFinReserva;
 	private int cantidadPersonas;
 	private String titular;
 	private JuegoType juego;
@@ -14,37 +16,31 @@ public class Reserva {
 		super();
 	}
 
-	/**
-	 * Full Constructor
-	 * @param mesa
-	 * @param fechaReserva
-	 * @param cantidadPersonas
-	 * @param titular
-	 * @param juego
-	 */
-	public Reserva(Mesa mesa, Date fechaReserva, int cantidadPersonas, String titular, JuegoType juego) {
+	public Reserva(Set<MesasReserva> mesas, Date fechaInicioReserva, Date fechaFinReserva, int cantidadPersonas,
+			String titular, JuegoType juego) {
 		super();
-		this.mesa = mesa;
-		this.fechaReserva = fechaReserva;
+		this.fechaInicioReserva = fechaInicioReserva;
+		this.fechaFinReserva = fechaFinReserva;
 		this.cantidadPersonas = cantidadPersonas;
 		this.titular = titular;
 		this.juego = juego;
+		this.mesas = mesas;
 	}
 
-	public Mesa getMesa() {
-		return mesa;
+	public Date getFechaInicioReserva() {
+		return fechaInicioReserva;
 	}
 
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
+	public void setFechaInicioReserva(Date fechaInicioReserva) {
+		this.fechaInicioReserva = fechaInicioReserva;
 	}
 
-	public Date getFechaReserva() {
-		return fechaReserva;
+	public Date getFechaFinReserva() {
+		return fechaFinReserva;
 	}
 
-	public void setFechaReserva(Date fechaReserva) {
-		this.fechaReserva = fechaReserva;
+	public void setFechaFinReserva(Date fechaFinReserva) {
+		this.fechaFinReserva = fechaFinReserva;
 	}
 
 	public int getCantidadPersonas() {
@@ -69,6 +65,14 @@ public class Reserva {
 
 	public void setJuego(JuegoType juego) {
 		this.juego = juego;
+	}
+
+	public Set<MesasReserva> getMesas() {
+		return mesas;
+	}
+
+	public void setMesas(Set<MesasReserva> mesas) {
+		this.mesas = mesas;
 	}
 
 }
