@@ -1,10 +1,12 @@
 package com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,14 +32,15 @@ public class ReservaEntity {
 
 	private String titular;
 
+	@Enumerated(EnumType.STRING)
 	private JuegoType juego;
 	
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			mappedBy = "mesasReserva",
+			mappedBy = "reserva",
 			orphanRemoval = true,
 			fetch = FetchType.EAGER)
-	private Set<MesasReservaEntity> mesas;
+	private List<MesasPorReservaEntity> mesasReserva;
 
 
 	public Long getId() {
@@ -88,16 +91,12 @@ public class ReservaEntity {
 		this.juego = juego;
 	}
 	
-	public Set<MesasReservaEntity> getMesas() {
-		return mesas;
+	public void setMesas(List<MesasPorReservaEntity> mesasReserva) {
+		this.mesasReserva = mesasReserva;
 	}
 
-	public void setMesas(Set<MesasReservaEntity> mesas) {
-		this.mesas = mesas;
-	}
-
-	public Set<MesasReservaEntity> getMesasReserva() {
-		return mesas;
+	public List<MesasPorReservaEntity> getMesasReserva() {
+		return mesasReserva;
 	}
 
 }

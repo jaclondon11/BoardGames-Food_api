@@ -1,10 +1,10 @@
-package com.ceiba.boardgamesnfood.aplicacion.manejadores.garantia;
+package com.ceiba.boardgamesnfood.aplicacion.manejadores.reserva;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ceiba.boardgamesnfood.dominio.Reserva;
-import com.ceiba.boardgamesnfood.dominio.servicio.garantia.ServicioObtenerReserva;
+import com.ceiba.boardgamesnfood.dominio.servicio.reserva.ServicioObtenerReserva;
 
 @Component
 public class ManejadorObtenerReserva {

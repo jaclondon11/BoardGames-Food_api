@@ -13,7 +13,7 @@ public interface RepositorioReserva {
 	Reserva obtener(String codigo);
 
 	/**
-	 * Permite agregar una garantia al repositorio de garantia
+	 * Permite agregar una reserva al repositorio de reserva
 	 * @param reserva
 	 */
 	void agregar(Reserva reserva);

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioReserva;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.builder.MesaReservaConverter;
+import com.ceiba.boardgamesnfood.infraestructura.persistencia.converter.MesasPorReservaConverter;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.ReservaEntity;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio.jpa.RepositorioMesaJPA;
 
@@ -36,7 +36,8 @@ public class RepositorioReservaPersistente implements RepositorioReserva {
 		ReservaEntity reserva = obtenerReservaEntityPorId(id);
 		return reserva == null ? null
 				: new Reserva(
-						MesaReservaConverter.convertirADominioSet(reserva.getMesasReserva()),
+						reserva.getId(),
+						MesasPorReservaConverter.convertirADominioList(reserva.getMesasReserva()),
 						reserva.getFechaInicioReserva(),
 						reserva.getFechaFinReserva(),
 						reserva.getCantidadPersonas(),
@@ -46,7 +47,7 @@ public class RepositorioReservaPersistente implements RepositorioReserva {
 
 	@Override
 	public void agregar(Reserva reserva) {
-		ReservaEntity reservaEntity = buildReservaEntity(reserva);
+		Reserva reservaEntity = buildReservaEntity(reserva);
 		entityManager.persist(reservaEntity);
 		
 	}
@@ -62,17 +63,17 @@ public class RepositorioReservaPersistente implements RepositorioReserva {
 		return !resultList.isEmpty() ? (ReservaEntity) resultList.get(0) : null;
 	}
 
-	private ReservaEntity buildReservaEntity(Reserva reserva) {
+	private Reserva buildReservaEntity(Reserva reserva) {
 
 		
-		ReservaEntity reservaEntity = new ReservaEntity();
-		reservaEntity.setMesas(MesaReservaConverter.convertirAEntitySet(reserva.getMesas()));
-		reservaEntity.setFechaInicioReserva(reserva.getFechaInicioReserva());
-		reservaEntity.setFechaFinReserva(reserva.getFechaFinReserva());
-		reservaEntity.setCantidadPersonas(reserva.getCantidadPersonas());
-		reservaEntity.setTitular(reserva.getTitular());
-		reservaEntity.setJuego(reserva.getJuego());
+		Reserva reservaEntity = new Reserva();
+//		reservaEntity.setMesas(MesasPorReservaConverter.convertirAEntityList(reserva.getMesas()));
+//		reservaEntity.setFechaInicioReserva(reserva.getFechaInicioReserva());
+//		reservaEntity.setFechaFinReserva(reserva.getFechaFinReserva());
+//		reservaEntity.setCantidadPersonas(reserva.getCantidadPersonas());
+//		reservaEntity.setTitular(reserva.getTitular());
+//		reservaEntity.setJuego(reserva.getJuego());
 		
-		return null;
+		return reservaEntity;
 	}
 }

@@ -15,7 +15,7 @@ public class ServicioCrearMesa {
 		this.repositorioMesa = repositorioMesa;
 	}
 
-	public void ejecutar(Mesa producto) {
-		this.repositorioMesa.agregar(producto);
+	public void ejecutar(Mesa mesa) {
+		this.repositorioMesa.agregar(mesa);
 	}
 }

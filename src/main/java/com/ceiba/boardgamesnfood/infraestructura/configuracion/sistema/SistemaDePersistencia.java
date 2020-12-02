@@ -16,12 +16,12 @@ public class SistemaDePersistencia {
 		this.entityManager = new ConexionJPA().createEntityManager();
 	}
 
-	public RepositorioMesa obtenerRepositorioProductos() {
+	public RepositorioMesa obtenerRepositorioMesa() {
 		return new RepositorioMesaPersistente(entityManager);
 	}
 	
-	public RepositorioReserva obtenerRepositorioGarantia() {
-		return new RepositorioReservaPersistente(entityManager, this.obtenerRepositorioProductos());
+	public RepositorioReserva obtenerRepositorioReserva() {
+		return new RepositorioReservaPersistente(entityManager, this.obtenerRepositorioMesa());
 	}
 
 	public void iniciar() {

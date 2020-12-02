@@ -1,4 +1,4 @@
-package com.ceiba.boardgamesnfood.dominio.servicio.garantia;
+package com.ceiba.boardgamesnfood.dominio.servicio.reserva;
 
 import org.springframework.stereotype.Component;
 

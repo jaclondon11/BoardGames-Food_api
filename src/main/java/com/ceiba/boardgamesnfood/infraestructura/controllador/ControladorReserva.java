@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
-import com.ceiba.boardgamesnfood.aplicacion.manejadores.garantia.ManejadorGenerarReserva;
-import com.ceiba.boardgamesnfood.aplicacion.manejadores.garantia.ManejadorObtenerReserva;
+import com.ceiba.boardgamesnfood.aplicacion.manejadores.reserva.ManejadorGenerarReserva;
+import com.ceiba.boardgamesnfood.aplicacion.manejadores.reserva.ManejadorObtenerReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 
 
@@ -23,10 +23,10 @@ public class ControladorReserva {
 	private final ManejadorObtenerReserva manejadorObtenerReserva;
 	private final ManejadorGenerarReserva manejadorGenerarReserva;
 
-	public ControladorReserva(ManejadorObtenerReserva manejadorObtenerGarantia,
-			ManejadorGenerarReserva manejadorGenerarGarantia) {
-		this.manejadorObtenerReserva = manejadorObtenerGarantia;
-		this.manejadorGenerarReserva = manejadorGenerarGarantia;
+	public ControladorReserva(ManejadorObtenerReserva manejadorObtenerReserva,
+			ManejadorGenerarReserva manejadorGenerarReserva) {
+		this.manejadorObtenerReserva = manejadorObtenerReserva;
+		this.manejadorGenerarReserva = manejadorGenerarReserva;
 	}
 
 	@PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)

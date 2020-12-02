@@ -1,24 +1,32 @@
 package com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
-@Entity(name = "MesasReserva")
-public class MesasReservaEntity {
+@Entity(name = "MesasPorReserva")
+@Table(name = "MESAS_POR_RESERVA")
+@NamedQuery(name = "MesasPorReserva.findMesasConReservas",
+		query = "SELECT m.id FROM Mesa m "
+				+ "LEFT JOIN MesasPorReserva mr on mr.mesa.id = m.id "
+				+ "WHERE :fechaInicioReserva BETWEEN mr.reserva.fechaInicioReserva AND mr.reserva.fechaFinReserva")
+public class MesasPorReservaEntity {
 
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_MESA", referencedColumnName = "id")
 	private MesaEntity mesa;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_RESERVA", referencedColumnName = "id")
 	private ReservaEntity reserva;
 

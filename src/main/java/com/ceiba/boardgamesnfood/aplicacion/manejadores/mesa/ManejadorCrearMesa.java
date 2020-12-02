@@ -19,6 +19,7 @@ public class ManejadorCrearMesa {
 		this.fabricaMesa = fabricaMesa;
 	}
 
+	
 	@Transactional
 	public void ejecutar(ComandoMesa comandoMesa) {
 		Mesa mesa = this.fabricaMesa.crearMesa(comandoMesa);

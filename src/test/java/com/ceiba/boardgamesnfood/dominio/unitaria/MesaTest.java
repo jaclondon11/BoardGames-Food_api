@@ -13,7 +13,7 @@ public class MesaTest {
 	private static final String CODIGO = "1";
 
 	@Test
-	public void crearProductoTest() {
+	public void crearMesaTest() {
 		
 		// arrange
 		MesaTestDataBuilder mesaTestDataBuilder = new MesaTestDataBuilder().

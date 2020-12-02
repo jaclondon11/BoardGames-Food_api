@@ -6,6 +6,7 @@ public interface RepositorioMesa {
 
 	/**
 	 * Permite obtener una mesa dado un codigo
+	 * 
 	 * @param codigo
 	 * @return
 	 */
@@ -13,8 +14,9 @@ public interface RepositorioMesa {
 
 	/**
 	 * Permite agregar una mesa al repositorio
-	 * @param producto
+	 * 
+	 * @param mesa
 	 */
-	void agregar(Mesa producto);
+	void agregar(Mesa mesa);
 
 }
