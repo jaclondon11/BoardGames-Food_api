@@ -21,6 +21,18 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [], 
+            gitTool: 'Default', 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[
+                credentialsId: 'GitHub_jhoel.acosta', 
+                url:'https://github.com/jaclondon11/Board_games_n_food_api'
+            ]]
+            ])
       }
     }
     
