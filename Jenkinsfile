@@ -39,7 +39,7 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./Board_games_n_food_api/build.gradle clean compileJava'
+        sh 'gradle --b ./build.gradle clean compileJava'
         sh 'gradle --b ./build.gradle test'
       }
     }
