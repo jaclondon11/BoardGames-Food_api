@@ -5,12 +5,11 @@ import com.ceiba.boardgamesnfood.dominio.Reserva;
 public interface RepositorioReserva {
 	
 	/**
-	 * Permite obtener una reverva por el codigo
-	 * @param codigo
-	 * @param codigo
+	 * Permite obtener una reverva por el id
+	 * @param id
 	 * @return entity o null si no existe
 	 */
-	Reserva obtener(String codigo);
+	Reserva obtener(Long id);
 
 	/**
 	 * Permite agregar una reserva al repositorio de reserva

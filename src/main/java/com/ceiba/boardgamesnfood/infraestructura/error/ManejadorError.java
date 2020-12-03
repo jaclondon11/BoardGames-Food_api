@@ -2,6 +2,7 @@ package com.ceiba.boardgamesnfood.infraestructura.error;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ceiba.boardgamesnfood.dominio.excepcion.CantidadPersonasSuperadasException;
-import com.ceiba.boardgamesnfood.dominio.excepcion.MesaNoEncontradaException;
+import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
 import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradasException;
 
 @ControllerAdvice
@@ -21,8 +22,9 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
 
     public ManejadorError() {
         CODIGOS_ESTADO.put(CantidadPersonasSuperadasException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
-        CODIGOS_ESTADO.put(MesaNoEncontradaException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
+        CODIGOS_ESTADO.put(EntityNoEncontradaException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
         CODIGOS_ESTADO.put(MesasDisponiblesNoEncontradasException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
+        CODIGOS_ESTADO.put(DataIntegrityViolationException.class.getSimpleName(), HttpStatus.UNPROCESSABLE_ENTITY.value());
         
         //en caso de tener otra excepcion matricularla aca
     }

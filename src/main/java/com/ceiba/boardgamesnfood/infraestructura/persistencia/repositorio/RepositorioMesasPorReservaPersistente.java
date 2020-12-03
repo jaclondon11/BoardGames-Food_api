@@ -18,7 +18,7 @@ import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity
 public class RepositorioMesasPorReservaPersistente implements RepositorioMesasPorReserva {
 
 	private static final String FECHA_INICIO_RESERVA = "fechaInicioReserva";
-	private static final String MESAS_CON_RESERVA_FIND_BY_DATE = "MesasReserva.findMesasConReservas";
+	private static final String MESAS_CON_RESERVA_FIND_BY_DATE = "MesasPorReserva.findMesasConReservas";
 	
 	private EntityManager entityManager;
 

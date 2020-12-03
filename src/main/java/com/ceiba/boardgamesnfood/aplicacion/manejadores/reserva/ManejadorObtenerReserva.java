@@ -16,7 +16,7 @@ public class ManejadorObtenerReserva {
     }
 
     @Transactional
-    public Reserva ejecutar(String id) {
+    public Reserva ejecutar(Long id) {
         return this.servicioObtenerReserva.ejecutar(id) ;
     }
 }

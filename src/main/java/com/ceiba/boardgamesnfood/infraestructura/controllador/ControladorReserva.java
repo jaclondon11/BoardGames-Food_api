@@ -35,7 +35,10 @@ public class ControladorReserva {
 	}
 
 	@GetMapping("/{id}")
-	public Reserva buscar(@PathVariable(name = "id") String id) {
+	public Reserva buscar(
+		@PathVariable(name = "id")
+		Long id) {
 		return this.manejadorObtenerReserva.ejecutar(id);
 	}
+	
 }

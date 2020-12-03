@@ -1,7 +1,11 @@
 package com.ceiba.boardgamesnfood.infraestructura.controllador;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorCrearMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesa;
+import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesasDisponibles;
 import com.ceiba.boardgamesnfood.dominio.Mesa;
 
 @RestController
 @RequestMapping("/mesa")
 public class ControladorMesa {
+		private static final String DATE_TIME_FORMAT = "yyyy-MM-dd-HH:mm:ss";
+		
 		private final ManejadorCrearMesa manejadorCrearMesa;
 		private final ManejadorObtenerMesa manejadorObtenerMesa;
+		private final ManejadorObtenerMesasDisponibles manejadorObtenerMesasDisponibles;
 
-	public ControladorMesa(ManejadorCrearMesa manejadorCrearMesa, ManejadorObtenerMesa manejadorObtenerMesa) {
+	public ControladorMesa(ManejadorCrearMesa manejadorCrearMesa,
+			ManejadorObtenerMesa manejadorObtenerMesa,
+			ManejadorObtenerMesasDisponibles manejadorObtenerMesasDisponibles) {
 		this.manejadorCrearMesa = manejadorCrearMesa;
 		this.manejadorObtenerMesa = manejadorObtenerMesa;
+		this.manejadorObtenerMesasDisponibles = manejadorObtenerMesasDisponibles;
 	}
 
 	@Valid
@@ -35,6 +46,13 @@ public class ControladorMesa {
 	@GetMapping("/{codigo}")
 	public Mesa buscar(@PathVariable(name = "codigo") String codigo) {
 		return this.manejadorObtenerMesa.ejecutar(codigo);
-		
+	}
+	
+	@GetMapping("/disponibles/{fechaHora}")
+	public List<Mesa> obtenerMesasDisponibles(
+			@PathVariable(name = "fechaHora")
+			@DateTimeFormat(pattern = DATE_TIME_FORMAT)
+			Date fecha) {
+		return this.manejadorObtenerMesasDisponibles.ejecutar(fecha);
 	}
 }

@@ -13,7 +13,7 @@ public class ServicioObtenerReserva {
         this.repositorioReserva = repositorioReserva;
     }
 
-    public Reserva ejecutar(String id) {
+    public Reserva ejecutar(Long id) {
         return this.repositorioReserva.obtener(id);
     }
 }

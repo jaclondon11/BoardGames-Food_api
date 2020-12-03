@@ -1,6 +1,7 @@
 package com.ceiba.boardgamesnfood.infraestructura.controllador;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Matchers.isNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
+import com.ceiba.boardgamesnfood.dominio.JuegoType;
 import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
 import com.ceiba.boardgamesnfood.testdatabuilder.MesaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-public class ControladorMesaTest {
+public class ControladorReservaTest {
 
 	@Autowired
 	private MockMvc mvc;
@@ -32,22 +34,24 @@ public class ControladorMesaTest {
     private ObjectMapper objectMapper;
 
 	@Test
-	public void debeRetornarProductoSiExiste() throws Exception {
+	public void debeRetornarReservaSiExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", "01")
+				.get("/reserva/{id}", 1L)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.codigo").value("01"));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.titular").value("TITULAR_1"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.juego").value(JuegoType.EXPLODING_KITTENS.name()));
 	}
 	
 	@Test
-	public void debeRetornarNotFoundSiProductoNoExiste() throws Exception {
+	public void debeRetornarNotFoundSiReservaNoExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", "00")
+				.get("/reserva/{id}", 0L)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isNotFound())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nombreExcepcion").value(EntityNoEncontradaException.class.getSimpleName()));	
 	}
+	
 	
 	@Test
 	public void debeCrearMesa() throws Exception {
@@ -71,7 +75,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarMesasDisponiblesSiFechaHoraEsDisponible() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/disponibles/{fecha}", "2020-12-04-15:00:00")
+				.get("/mesa/disponibles/{fecha}", "2020-12-03-15:00:00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].codigo").value("01"))
