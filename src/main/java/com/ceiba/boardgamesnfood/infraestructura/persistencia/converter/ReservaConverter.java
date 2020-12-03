@@ -1,8 +1,6 @@
 package com.ceiba.boardgamesnfood.infraestructura.persistencia.converter;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
-import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.ReservaEntity;
 
 public class ReservaConverter {
@@ -28,12 +26,17 @@ public class ReservaConverter {
 	}
 	
 
-	public static MesaEntity convertirAEntity(Mesa mesa) {
-		MesaEntity mesaEntity = new MesaEntity();
+	public static ReservaEntity convertirAEntity(Reserva reserva) {
+		ReservaEntity reservaEntity = new ReservaEntity();
 		
-		mesaEntity.setId(mesa.getId());
-		mesaEntity.setCodigo(mesa.getCodigo());
+		reservaEntity.setId(reserva.getId());
+		reservaEntity.setCantidadPersonas(reserva.getCantidadPersonas());
+		reservaEntity.setFechaFinReserva(reserva.getFechaFinReserva());
+		reservaEntity.setFechaInicioReserva(reserva.getFechaInicioReserva());
+		reservaEntity.setJuego(reserva.getJuego());
+		reservaEntity.setTitular(reserva.getTitular());
+		reservaEntity.setMesas(MesasPorReservaConverter.convertirAEntityList(reserva.getMesas()));
 
-		return mesaEntity;
+		return reservaEntity;
 	}
 }

@@ -1,5 +1,9 @@
 package com.ceiba.boardgamesnfood.infraestructura.persistencia.repositorio;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -18,6 +22,7 @@ public class RepositorioMesaPersistente implements RepositorioMesa, RepositorioM
 
 	private static final String CODIGO = "codigo";
 	private static final String MESA_FIND_BY_CODIGO = "Mesa.findByCodigo";
+	private static final String MESA_FIND_ALL = "Mesa.findAll";
 	
 	private EntityManager entityManager;
 
@@ -49,6 +54,23 @@ public class RepositorioMesaPersistente implements RepositorioMesa, RepositorioM
 	@Override
 	public void agregar(Mesa mesa) {
 		entityManager.persist(MesaConverter.convertirAEntity(mesa));
-	}	
+	}
+
+	@Override
+	public List<Mesa> obtenerMesas() {
+		
+		return new ArrayList<>(obtenerMesasEntity().stream()
+				.map(MesaConverter::convertirADominio)
+				.collect(Collectors.toList()));
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<MesaEntity> obtenerMesasEntity() {
+		
+		Query query = entityManager.createNamedQuery(MESA_FIND_ALL);
+
+		return query.getResultList();
+	}
 
 }

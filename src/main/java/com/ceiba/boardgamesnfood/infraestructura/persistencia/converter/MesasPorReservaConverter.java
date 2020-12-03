@@ -17,8 +17,7 @@ public class MesasPorReservaConverter {
 		MesasPorReserva mesaReserva = null;
 
 		if (mesasReservaEntity != null) {
-			Reserva reserva = new Reserva();
-			reserva.setId(mesasReservaEntity.getReserva().getId());
+			Reserva reserva = new Reserva(mesasReservaEntity.getReserva().getId());
 
 			mesaReserva = new MesasPorReserva(
 					mesasReservaEntity.getId(),

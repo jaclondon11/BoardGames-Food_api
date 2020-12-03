@@ -8,7 +8,6 @@ import com.ceiba.boardgamesnfood.dominio.Mesa;
 @Component
 public class FabricaMesa {
 	public Mesa crearMesa(ComandoMesa comandoMesa) {
-		return new Mesa(comandoMesa.getId(),
-				comandoMesa.getCodigo());
+		return new Mesa(comandoMesa.getCodigo());
 	}
 }

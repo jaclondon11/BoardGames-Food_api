@@ -9,10 +9,11 @@ import javax.persistence.NamedQuery;
 
 @Entity(name = "Mesa")
 @NamedQuery(name = "Mesa.findByCodigo", query = "SELECT mesa FROM Mesa mesa WHERE mesa.codigo = :codigo")
+@NamedQuery(name = "Mesa.findAll", query = "SELECT mesa FROM Mesa mesa")
 public class MesaEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)

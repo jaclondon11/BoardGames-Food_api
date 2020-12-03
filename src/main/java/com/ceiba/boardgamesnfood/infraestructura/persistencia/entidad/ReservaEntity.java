@@ -21,7 +21,7 @@ import com.ceiba.boardgamesnfood.dominio.JuegoType;
 public class ReservaEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private Date fechaInicioReserva;

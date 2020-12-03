@@ -15,10 +15,6 @@ public class ManejadorObtenerMesa {
 		this.servicioObtenerMesa = servicioObtenerMesa;
 	}
 
-	/*TODO podemos saltar directamente a la capa de repository ya que no hay logica de 
-	 * negocio en el servicio
-	 * 
-	 */
 	@Transactional
 	public Mesa ejecutar(String codigo) {
 	 return	this.servicioObtenerMesa.ejecutar(codigo);

@@ -1,5 +1,7 @@
 package com.ceiba.boardgamesnfood.dominio.repositorio;
 
+import java.util.List;
+
 import com.ceiba.boardgamesnfood.dominio.Mesa;
 
 public interface RepositorioMesa {
@@ -18,5 +20,11 @@ public interface RepositorioMesa {
 	 * @param mesa
 	 */
 	void agregar(Mesa mesa);
+	
+	/**
+	 * Permite obtener todas las mesas 
+	 * @return
+	 */
+	List<Mesa> obtenerMesas();
 
 }

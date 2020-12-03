@@ -27,7 +27,7 @@ public class RepositorioMesasPorReservaPersistente implements RepositorioMesasPo
 	}
 
 	@Override
-	public List<Mesa> obtenerMesasDisponiblesByFecha(Date fechaReserva) {
+	public List<Mesa> obtenerMesasConReservaByFecha(Date fechaReserva) {
 		
 		List<MesaEntity> mesas = obtenerMesasConReservaByFechaQuery(fechaReserva);
 		

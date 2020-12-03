@@ -12,7 +12,7 @@ public interface RepositorioMesasPorReserva {
 	 * @param fechaReserva
 	 * @return set de mesas disponibles
 	 */
-	List<Mesa> obtenerMesasDisponiblesByFecha(Date fechaReserva);
+	List<Mesa> obtenerMesasConReservaByFecha(Date fechaReserva);
 
 	
 }

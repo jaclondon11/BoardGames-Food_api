@@ -1,4 +1,4 @@
-package com.ceiba.boardgamesnfood.infraestructura.persistencia.builder;
+package com.ceiba.boardgamesnfood.dominio.builder;
 
 import com.ceiba.boardgamesnfood.dominio.Mesa;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
