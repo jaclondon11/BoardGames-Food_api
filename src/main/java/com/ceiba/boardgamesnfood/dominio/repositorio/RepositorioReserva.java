@@ -14,7 +14,8 @@ public interface RepositorioReserva {
 	/**
 	 * Permite agregar una reserva al repositorio de reserva
 	 * @param reserva
+	 * @return 
 	 */
-	void agregar(Reserva reserva);
+	Reserva agregar(Reserva reserva);
 	
 }

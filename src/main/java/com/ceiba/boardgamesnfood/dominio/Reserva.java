@@ -13,10 +13,6 @@ public class Reserva {
 	private String titular;
 	private JuegoType juego;
 
-	public Reserva() {
-		super();
-	}
-	
 	/**
 	 * 
 	 * @param id

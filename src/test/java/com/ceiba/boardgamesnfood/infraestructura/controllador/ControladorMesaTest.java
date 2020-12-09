@@ -32,7 +32,7 @@ public class ControladorMesaTest {
     private ObjectMapper objectMapper;
 
 	@Test
-	public void debeRetornarProductoSiExiste() throws Exception {
+	public void debeRetornarMesaSiExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
 				.get("/mesa/{codigo}", "01")
 				.accept(MediaType.APPLICATION_JSON))

@@ -28,14 +28,14 @@ public class ServicioGenerarReserva {
 		this.asignadorMesas = asignadorMesas;
 	}
 
-	public void generarReserva(Reserva prospectoReserva, List<Mesa> mesasDisponibles) {
+	public Reserva generarReserva(Reserva prospectoReserva, List<Mesa> mesasDisponibles) {
 		Date fechaFinReserva = obtenerFechaFinReserva(prospectoReserva.getFechaInicioReserva());
 		
 		List<MesasPorReserva> mesasReserva = asignadorMesas.asignarMesasReserva(prospectoReserva, mesasDisponibles);
 		
 		prospectoReserva = asignarMesasYFechaAReserva(prospectoReserva, mesasReserva, fechaFinReserva);
 		
-		repositorioReserva.agregar(prospectoReserva);
+		return repositorioReserva.agregar(prospectoReserva);
 		
 	}
 

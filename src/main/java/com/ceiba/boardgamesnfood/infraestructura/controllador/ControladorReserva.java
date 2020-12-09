@@ -30,8 +30,9 @@ public class ControladorReserva {
 	}
 
 	@PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public void generarReserva(@Valid @RequestBody ComandoReserva comandoReserva) {
-		manejadorGenerarReserva.ejecutar(comandoReserva);
+	public Reserva generarReserva(@Valid @RequestBody ComandoReserva comandoReserva) {
+		Reserva reserva = manejadorGenerarReserva.ejecutar(comandoReserva);
+		return reserva;
 	}
 
 	@GetMapping("/{id}")

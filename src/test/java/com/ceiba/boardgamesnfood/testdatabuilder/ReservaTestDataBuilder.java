@@ -2,6 +2,7 @@ package com.ceiba.boardgamesnfood.testdatabuilder;
 
 import java.util.Date;
 
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
 import com.ceiba.boardgamesnfood.dominio.JuegoType;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 
@@ -43,6 +44,10 @@ public class ReservaTestDataBuilder {
 	
 	public Reserva getResult() {
 		return new Reserva(fechaInicioReserva, cantidadPersonas, titular, juego);
+	}
+	
+	public ComandoReserva getComando() {
+		return new ComandoReserva(titular, juego, cantidadPersonas, fechaInicioReserva);
 	}
 
 

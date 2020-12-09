@@ -17,24 +17,11 @@ public class MesasPorReserva {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Mesa getMesa() {
 		return mesa;
-	}
-
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
 	}
 
 	public Reserva getReserva() {
 		return reserva;
 	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}
-
 }

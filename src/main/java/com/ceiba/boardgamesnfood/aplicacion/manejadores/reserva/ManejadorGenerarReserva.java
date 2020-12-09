@@ -26,7 +26,7 @@ public class ManejadorGenerarReserva {
 	}
 	
 	@Transactional
-	public void ejecutar(ComandoReserva comandoReserva) {
+	public Reserva ejecutar(ComandoReserva comandoReserva) {
 		Reserva prospectoReserva = new Reserva(
 				comandoReserva.getFechaReserva(),
 				comandoReserva.getCantidadPersonas(),
@@ -36,7 +36,7 @@ public class ManejadorGenerarReserva {
 		List<Mesa> mesas = servicioObtenerMesasDisponibles
 				.obtenerMesasDisponiblesByFecha(prospectoReserva.getFechaInicioReserva());
 		
-		this.servicioGenerarReserva.generarReserva(prospectoReserva, mesas);
+		return this.servicioGenerarReserva.generarReserva(prospectoReserva, mesas);
 	}
 	
 	

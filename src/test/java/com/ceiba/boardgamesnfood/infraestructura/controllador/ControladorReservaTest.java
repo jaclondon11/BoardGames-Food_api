@@ -1,9 +1,10 @@
 package com.ceiba.boardgamesnfood.infraestructura.controllador;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Matchers.isNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
 import com.ceiba.boardgamesnfood.dominio.JuegoType;
 import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
-import com.ceiba.boardgamesnfood.testdatabuilder.MesaTestDataBuilder;
+import com.ceiba.boardgamesnfood.testdatabuilder.ReservaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -52,33 +53,25 @@ public class ControladorReservaTest {
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nombreExcepcion").value(EntityNoEncontradaException.class.getSimpleName()));	
 	}
 	
-	
 	@Test
-	public void debeCrearMesa() throws Exception {
+	public void debeCrearReserva() throws Exception {
+		Date fecha = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").parse("2020-12-04-15:00:00");
 		
-		ComandoMesa comandoMesa = new MesaTestDataBuilder().buildComando();
+		ComandoReserva comandoReserva = ReservaTestDataBuilder.build()
+				.conTitular("TITULAR")
+				.conFecha(fecha)
+				.conJuego(JuegoType.CATAN)
+				.conCantidadPersonas(4)
+				.getComando();
+		
 		mvc.perform(MockMvcRequestBuilders
-				.post("/mesa")
-				.content(objectMapper.writeValueAsString(comandoMesa))
+				.post("/reserva")
+				.content(objectMapper.writeValueAsString(comandoReserva))
 				.contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk());
 		
-		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", comandoMesa.getCodigo())
-				.accept(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.codigo").value(comandoMesa.getCodigo()));
 	}
 	
-	@Test
-	public void debeRetornarMesasDisponiblesSiFechaHoraEsDisponible() throws Exception {
-		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/disponibles/{fecha}", "2020-12-03-15:00:00")
-				.accept(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].codigo").value("01"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)));
-	}
 }
