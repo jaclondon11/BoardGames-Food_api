@@ -31,8 +31,7 @@ public class ControladorReserva {
 
 	@PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 	public Reserva generarReserva(@Valid @RequestBody ComandoReserva comandoReserva) {
-		Reserva reserva = manejadorGenerarReserva.ejecutar(comandoReserva);
-		return reserva;
+		return manejadorGenerarReserva.ejecutar(comandoReserva);
 	}
 
 	@GetMapping("/{id}")

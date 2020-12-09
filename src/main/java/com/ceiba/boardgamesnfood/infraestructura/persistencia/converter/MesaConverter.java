@@ -3,7 +3,7 @@ package com.ceiba.boardgamesnfood.infraestructura.persistencia.converter;
 import com.ceiba.boardgamesnfood.dominio.Mesa;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity;
 
-public class MesaConverter {
+public final class MesaConverter {
 
 	private MesaConverter() {
 	}

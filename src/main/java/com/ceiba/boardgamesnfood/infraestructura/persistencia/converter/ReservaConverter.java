@@ -3,7 +3,7 @@ package com.ceiba.boardgamesnfood.infraestructura.persistencia.converter;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.ReservaEntity;
 
-public class ReservaConverter {
+public final class ReservaConverter {
 
 	private ReservaConverter() {
 	}

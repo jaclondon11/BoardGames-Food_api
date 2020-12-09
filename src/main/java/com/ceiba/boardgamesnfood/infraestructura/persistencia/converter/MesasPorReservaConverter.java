@@ -8,7 +8,7 @@ import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesasPorReservaEntity;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.ReservaEntity;
 
-public class MesasPorReservaConverter {
+public final class MesasPorReservaConverter {
 
 	private MesasPorReservaConverter() {
 	}
