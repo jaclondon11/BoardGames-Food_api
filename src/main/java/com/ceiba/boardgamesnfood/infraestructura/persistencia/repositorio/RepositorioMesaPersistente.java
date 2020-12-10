@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.converter.MesaConverter;
@@ -31,7 +31,7 @@ public class RepositorioMesaPersistente implements RepositorioMesa, RepositorioM
 	}
 
 	@Override
-	public Mesa obtenerPorCodigo(String codigo) {
+	public Table obtenerPorCodigo(String codigo) {
 		MesaEntity mesaEntity = null;
 		try {
 			mesaEntity = obtenerMesaEntityPorCodigo(codigo);
@@ -52,12 +52,12 @@ public class RepositorioMesaPersistente implements RepositorioMesa, RepositorioM
 	}
 
 	@Override
-	public void agregar(Mesa mesa) {
+	public void agregar(Table mesa) {
 		entityManager.persist(MesaConverter.convertirAEntity(mesa));
 	}
 
 	@Override
-	public List<Mesa> obtenerMesas() {
+	public List<Table> obtenerMesas() {
 		
 		return new ArrayList<>(obtenerMesasEntity().stream()
 				.map(MesaConverter::convertirADominio)

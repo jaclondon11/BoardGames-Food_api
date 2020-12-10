@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradasException;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesasPorReserva;
@@ -41,7 +41,7 @@ public class ServicioObtenerMesasDisponibleTest {
 		when(repositorioReserva.obtenerMesas()).thenReturn(MesaTestDataBuilder.defaultTestMesasList());
 		
 		//act
-		List<Mesa> mesasDisponibles = servicio.obtenerMesasDisponiblesByFecha(fechaInicioReserva);
+		List<Table> mesasDisponibles = servicio.obtenerMesasDisponiblesByFecha(fechaInicioReserva);
 		
 		//assert
 		assertThat(mesasDisponibles, is(notNullValue()));

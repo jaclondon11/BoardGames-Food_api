@@ -3,7 +3,7 @@ package com.ceiba.boardgamesnfood.dominio.repositorio;
 import java.util.Date;
 import java.util.List;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 
 public interface RepositorioMesasPorReserva {
 	
@@ -12,7 +12,7 @@ public interface RepositorioMesasPorReserva {
 	 * @param fechaReserva
 	 * @return set de mesas disponibles
 	 */
-	List<Mesa> obtenerMesasConReservaByFecha(Date fechaReserva);
+	List<Table> obtenerMesasConReservaByFecha(Date fechaReserva);
 
 	
 }

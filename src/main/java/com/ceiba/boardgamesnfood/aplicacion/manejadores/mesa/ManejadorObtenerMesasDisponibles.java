@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.servicio.mesas_por_reserva.ServicioObtenerMesasDisponibles;
 
 @Service
@@ -19,7 +19,7 @@ public class ManejadorObtenerMesasDisponibles {
 	}
 
 	@Transactional
-	public List<Mesa> ejecutar(Date fechaHora) {
+	public List<Table> ejecutar(Date fechaHora) {
 		return servicioObtenerMesasDisponibles.obtenerMesasDisponiblesByFecha(fechaHora);
 	}
 }

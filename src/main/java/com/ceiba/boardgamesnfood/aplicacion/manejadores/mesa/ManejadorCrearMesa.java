@@ -3,9 +3,9 @@ package com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
 import com.ceiba.boardgamesnfood.aplicacion.fabrica.FabricaMesa;
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.servicio.mesa.ServicioCrearMesa;
 
 @Component
@@ -21,8 +21,8 @@ public class ManejadorCrearMesa {
 
 	
 	@Transactional
-	public void ejecutar(ComandoMesa comandoMesa) {
-		Mesa mesa = this.fabricaMesa.crearMesa(comandoMesa);
+	public void ejecutar(ComandoTable comandoMesa) {
+		Table mesa = this.fabricaMesa.crearMesa(comandoMesa);
 		this.servicioCrearMesa.ejecutar(mesa);
 	}
 }

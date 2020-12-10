@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesasPorReserva;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.converter.MesaConverter;
 import com.ceiba.boardgamesnfood.infraestructura.persistencia.entidad.MesaEntity;
@@ -27,7 +27,7 @@ public class RepositorioMesasPorReservaPersistente implements RepositorioMesasPo
 	}
 
 	@Override
-	public List<Mesa> obtenerMesasConReservaByFecha(Date fechaReserva) {
+	public List<Table> obtenerMesasConReservaByFecha(Date fechaReserva) {
 		
 		List<MesaEntity> mesas = obtenerMesasConReservaByFechaQuery(fechaReserva);
 		

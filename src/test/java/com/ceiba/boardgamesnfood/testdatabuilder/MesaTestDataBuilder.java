@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.LongStream;
 
-import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
+import com.ceiba.boardgamesnfood.dominio.Table;
 
 public class MesaTestDataBuilder {
 
@@ -26,18 +26,18 @@ public class MesaTestDataBuilder {
 		return this;
 	}
 	
-	public Mesa build() {
-		return new Mesa(this.codigo);
+	public Table build() {
+		return new Table(this.codigo);
 	}
 
-	public ComandoMesa buildComando() {
-		return new ComandoMesa(this.codigo);
+	public ComandoTable buildComando() {
+		return new ComandoTable(this.codigo);
 	}
 	
-	public static List<Mesa> defaultTestMesasList(){
-		List<Mesa> mesasList = new ArrayList<>();
+	public static List<Table> defaultTestMesasList(){
+		List<Table> mesasList = new ArrayList<>();
 		LongStream.range(1, 6)
-		.forEach(i -> mesasList.add(new Mesa(i, Long.toString(i))));
+		.forEach(i -> mesasList.add(new Table(i, Long.toString(i))));
 		return mesasList;
 	}
 }

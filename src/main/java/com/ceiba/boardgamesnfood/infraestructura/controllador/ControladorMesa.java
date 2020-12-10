@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorCrearMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesasDisponibles;
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 
 @RestController
 @RequestMapping("/mesa")
@@ -39,17 +40,18 @@ public class ControladorMesa {
 	@Valid
 	@PostMapping
 	public void agregar(@RequestBody
-			ComandoMesa comandoMesa) {
+			ComandoTable comandoMesa) {
 		this.manejadorCrearMesa.ejecutar(comandoMesa);
 	}
 
 	@GetMapping("/{codigo}")
-	public Mesa buscar(@PathVariable(name = "codigo") String codigo) {
+	public Table buscar(@PathVariable(name = "codigo") String codigo) {
 		return this.manejadorObtenerMesa.ejecutar(codigo);
 	}
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/disponibles/{fechaHora}")
-	public List<Mesa> obtenerMesasDisponibles(
+	public List<Table> obtenerMesasDisponibles(
 			@PathVariable(name = "fechaHora")
 			@DateTimeFormat(pattern = DATE_TIME_FORMAT)
 			Date fecha) {

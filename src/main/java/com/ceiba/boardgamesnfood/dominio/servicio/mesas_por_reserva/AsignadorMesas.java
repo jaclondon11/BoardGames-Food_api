@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.dominio.builder.MesasPorReservaBuilder;
@@ -18,7 +18,7 @@ public class AsignadorMesas {
 	private static final int MESAS_RESERVA_GRANDE = 2;
 	private static final int CANTIDAD_MAXIMA_PERSONAS_POR_MESA = 4;
 	
-	public List<MesasPorReserva> asignarMesasReserva(Reserva reserva, List<Mesa> mesasDisponibles) {
+	public List<MesasPorReserva> asignarMesasReserva(Reserva reserva, List<Table> mesasDisponibles) {
 		List<MesasPorReserva> mesasPorReservas = new ArrayList<>();
 		if (reserva.getCantidadPersonas() > reserva.getJuego().getCantidadJugadoresMaxima()) {
 			throw new CantidadPersonasSuperadasException();
@@ -34,13 +34,13 @@ public class AsignadorMesas {
 		return mesasPorReservas;
 	}
 	
-	private void validarReservaGrande(List<Mesa> mesas) {
+	private void validarReservaGrande(List<Table> mesas) {
 		if (mesas.size() < MESAS_RESERVA_GRANDE) {
 			throw new MesasDisponiblesNoEncontradasException();
 		}
 	}
 
-	private MesasPorReserva asignarMesaDisponible(Reserva reserva, Mesa mesa) {
+	private MesasPorReserva asignarMesaDisponible(Reserva reserva, Table mesa) {
 		return MesasPorReservaBuilder.build()
 		.conMesa(mesa)
 		.conReserva(reserva)

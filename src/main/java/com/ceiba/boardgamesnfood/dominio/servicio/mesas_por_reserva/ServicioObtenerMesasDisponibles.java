@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradasException;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesasPorReserva;
@@ -26,11 +26,11 @@ public class ServicioObtenerMesasDisponibles {
 		this.repositorioMesa = repositorioMesa;
 	}
 	
-	public List<Mesa> obtenerMesasDisponiblesByFecha(Date fechaReserva) {
-		List<Mesa> mesasConReserva = repositorioMesasPorReserva.obtenerMesasConReservaByFecha(fechaReserva);
-		List<Mesa> mesas = repositorioMesa.obtenerMesas();
+	public List<Table> obtenerMesasDisponiblesByFecha(Date fechaReserva) {
+		List<Table> mesasConReserva = repositorioMesasPorReserva.obtenerMesasConReservaByFecha(fechaReserva);
+		List<Table> mesas = repositorioMesa.obtenerMesas();
 		
-		List<Mesa> mesasDisponibles = mesas.stream()
+		List<Table> mesasDisponibles = mesas.stream()
 				.filter(m -> !mesasConReserva.contains(m))
 				.collect(Collectors.toList());
 		

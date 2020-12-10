@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoMesa;
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
 import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
 import com.ceiba.boardgamesnfood.testdatabuilder.MesaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +37,7 @@ public class ControladorMesaTest {
 				.get("/mesa/{codigo}", "01")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.codigo").value("01"));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.code").value("01"));
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeCrearMesa() throws Exception {
 		
-		ComandoMesa comandoMesa = new MesaTestDataBuilder().buildComando();
+		ComandoTable comandoMesa = new MesaTestDataBuilder().buildComando();
 		mvc.perform(MockMvcRequestBuilders
 				.post("/mesa")
 				.content(objectMapper.writeValueAsString(comandoMesa))
@@ -62,10 +62,10 @@ public class ControladorMesaTest {
 				.andExpect(status().isOk());
 		
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", comandoMesa.getCodigo())
+				.get("/mesa/{codigo}", comandoMesa.getCode())
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.codigo").value(comandoMesa.getCodigo()));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.code").value(comandoMesa.getCode()));
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class ControladorMesaTest {
 				.get("/mesa/disponibles/{fecha}", "2020-12-04-15:00:00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].codigo").value("01"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)));
 	}
 }

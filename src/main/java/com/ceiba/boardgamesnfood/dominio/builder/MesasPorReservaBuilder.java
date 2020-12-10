@@ -1,12 +1,12 @@
 package com.ceiba.boardgamesnfood.dominio.builder;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 
 public class MesasPorReservaBuilder {
 
-	private Mesa mesa;
+	private Table mesa;
 	private Reserva reserva;
 	
 	public static MesasPorReservaBuilder build() {
@@ -17,7 +17,7 @@ public class MesasPorReservaBuilder {
 		super();
 	}
 
-	public MesasPorReservaBuilder conMesa(Mesa mesa) {
+	public MesasPorReservaBuilder conMesa(Table mesa) {
 		this.mesa = mesa;
 		return this;
 	}

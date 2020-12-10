@@ -1,21 +1,21 @@
 package com.ceiba.boardgamesnfood.dominio;
 
-public class Mesa {
+public class Table {
 	private Long id;
-	private String codigo;
+	private String code;
 	
-	public Mesa(String codigo) {
+	public Table(String code) {
 		super();
-		this.codigo = codigo;
+		this.code = code;
 	}
 
-	public Mesa(Long id, String codigo) {
+	public Table(Long id, String code) {
 		this.id = id;
-		this.codigo = codigo;
+		this.code = code;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCode() {
+		return code;
 	}
 
 	public Long getId() {
@@ -26,7 +26,7 @@ public class Mesa {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		return result;
 	}
 
@@ -38,11 +38,11 @@ public class Mesa {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Mesa other = (Mesa) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		Table other = (Table) obj;
+		if (code == null) {
+			if (other.code != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!code.equals(other.code))
 			return false;
 		return true;
 	}

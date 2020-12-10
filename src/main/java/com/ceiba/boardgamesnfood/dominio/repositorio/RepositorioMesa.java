@@ -2,7 +2,7 @@ package com.ceiba.boardgamesnfood.dominio.repositorio;
 
 import java.util.List;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 
 public interface RepositorioMesa {
 
@@ -12,19 +12,19 @@ public interface RepositorioMesa {
 	 * @param codigo
 	 * @return
 	 */
-	Mesa obtenerPorCodigo(String codigo);
+	Table obtenerPorCodigo(String codigo);
 
 	/**
 	 * Permite agregar una mesa al repositorio
 	 * 
 	 * @param mesa
 	 */
-	void agregar(Mesa mesa);
+	void agregar(Table mesa);
 	
 	/**
 	 * Permite obtener todas las mesas 
 	 * @return
 	 */
-	List<Mesa> obtenerMesas();
+	List<Table> obtenerMesas();
 
 }

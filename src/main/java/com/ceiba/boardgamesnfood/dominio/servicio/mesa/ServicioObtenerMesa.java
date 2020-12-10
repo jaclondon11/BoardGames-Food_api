@@ -2,7 +2,7 @@ package com.ceiba.boardgamesnfood.dominio.servicio.mesa;
 
 import org.springframework.stereotype.Component;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioMesa;
 
 @Component
@@ -14,7 +14,7 @@ public class ServicioObtenerMesa {
 		this.repositorioMesa = repositorioMesa;
 	}
 
-	public Mesa ejecutar(String codigo) {
+	public Table ejecutar(String codigo) {
 		return this.repositorioMesa.obtenerPorCodigo(codigo);
 	}
 }

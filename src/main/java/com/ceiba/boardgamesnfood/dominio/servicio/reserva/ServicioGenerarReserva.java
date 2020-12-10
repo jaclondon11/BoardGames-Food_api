@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.boardgamesnfood.dominio.Mesa;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.dominio.repositorio.RepositorioReserva;
@@ -28,7 +28,7 @@ public class ServicioGenerarReserva {
 		this.asignadorMesas = asignadorMesas;
 	}
 
-	public Reserva generarReserva(Reserva prospectoReserva, List<Mesa> mesasDisponibles) {
+	public Reserva generarReserva(Reserva prospectoReserva, List<Table> mesasDisponibles) {
 		Date fechaFinReserva = obtenerFechaFinReserva(prospectoReserva.getFechaInicioReserva());
 		
 		List<MesasPorReserva> mesasReserva = asignadorMesas.asignarMesasReserva(prospectoReserva, mesasDisponibles);
