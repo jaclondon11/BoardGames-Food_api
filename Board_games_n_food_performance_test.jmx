@@ -33,7 +33,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;codigo&quot;: &quot;${__counter(TRUE,)}&quot;&#xd;
+    &quot;code&quot;: &quot;${__counter(TRUE,)}&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>

@@ -1,6 +1,6 @@
 package com.ceiba.boardgamesnfood.infraestructura.controllador;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,12 +41,23 @@ public class ControladorMesaTest {
 	}
 	
 	@Test
-	public void debeRetornarNotFoundSiProductoNoExiste() throws Exception {
+	public void debeRetornarNotFoundSiMesaNoExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
 				.get("/mesa/{codigo}", "00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isNotFound())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nombreExcepcion").value(EntityNoEncontradaException.class.getSimpleName()));	
+	}
+	
+
+	@Test
+	public void debeRetornarMesas() throws Exception {
+		mvc.perform(MockMvcRequestBuilders
+				.get("/mesa/")
+				.accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.length()", greaterThan(0)));
 	}
 	
 	@Test
@@ -75,6 +86,6 @@ public class ControladorMesaTest {
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.length()", greaterThan(0)));
 	}
 }

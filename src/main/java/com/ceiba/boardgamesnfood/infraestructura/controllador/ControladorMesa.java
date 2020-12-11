@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorCrearMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesa;
+import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesas;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesasDisponibles;
 import com.ceiba.boardgamesnfood.dominio.Table;
 
@@ -28,13 +28,16 @@ public class ControladorMesa {
 		private final ManejadorCrearMesa manejadorCrearMesa;
 		private final ManejadorObtenerMesa manejadorObtenerMesa;
 		private final ManejadorObtenerMesasDisponibles manejadorObtenerMesasDisponibles;
+		private final ManejadorObtenerMesas manejadorObtenerMesas;
 
 	public ControladorMesa(ManejadorCrearMesa manejadorCrearMesa,
 			ManejadorObtenerMesa manejadorObtenerMesa,
-			ManejadorObtenerMesasDisponibles manejadorObtenerMesasDisponibles) {
+			ManejadorObtenerMesasDisponibles manejadorObtenerMesasDisponibles,
+			ManejadorObtenerMesas manejadorObtenerMesas) {
 		this.manejadorCrearMesa = manejadorCrearMesa;
 		this.manejadorObtenerMesa = manejadorObtenerMesa;
 		this.manejadorObtenerMesasDisponibles = manejadorObtenerMesasDisponibles;
+		this.manejadorObtenerMesas = manejadorObtenerMesas;
 	}
 
 	@Valid
@@ -49,7 +52,11 @@ public class ControladorMesa {
 		return this.manejadorObtenerMesa.ejecutar(codigo);
 	}
 	
-//	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/")
+	public List<Table> obtenerMesas() {
+		return this.manejadorObtenerMesas.ejecutar();
+	}
+	
 	@GetMapping("/disponibles/{fechaHora}")
 	public List<Table> obtenerMesasDisponibles(
 			@PathVariable(name = "fechaHora")

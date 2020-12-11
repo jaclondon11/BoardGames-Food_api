@@ -4,6 +4,9 @@ public class Table {
 	private Long id;
 	private String code;
 	
+	/*
+	 * Tener validaciones de campos
+	 */
 	public Table(String code) {
 		super();
 		this.code = code;
