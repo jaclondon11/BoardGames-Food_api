@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +21,7 @@ import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMes
 import com.ceiba.boardgamesnfood.dominio.Table;
 
 @RestController
-@RequestMapping("/mesa")
+@RequestMapping("/api/mesa")
 public class ControladorMesa {
 		private static final String DATE_TIME_FORMAT = "yyyy-MM-dd-HH:mm:ss";
 		
@@ -41,10 +41,10 @@ public class ControladorMesa {
 	}
 
 	@Valid
-	@PostMapping
-	public void agregar(@RequestBody
+	@PutMapping
+	public Table agregar(@RequestBody
 			ComandoTable comandoMesa) {
-		this.manejadorCrearMesa.ejecutar(comandoMesa);
+		return this.manejadorCrearMesa.ejecutar(comandoMesa);
 	}
 
 	@GetMapping("/{codigo}")
@@ -52,7 +52,7 @@ public class ControladorMesa {
 		return this.manejadorObtenerMesa.ejecutar(codigo);
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public List<Table> obtenerMesas() {
 		return this.manejadorObtenerMesas.ejecutar();
 	}

@@ -1,8 +1,8 @@
 package com.ceiba.boardgamesnfood.dominio.builder;
 
-import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
+import com.ceiba.boardgamesnfood.dominio.Table;
 
 public class MesasPorReservaBuilder {
 

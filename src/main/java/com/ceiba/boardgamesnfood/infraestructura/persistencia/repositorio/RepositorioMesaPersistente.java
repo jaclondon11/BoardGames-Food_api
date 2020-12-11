@@ -52,8 +52,9 @@ public class RepositorioMesaPersistente implements RepositorioMesa, RepositorioM
 	}
 
 	@Override
-	public void agregar(Table mesa) {
-		entityManager.persist(MesaConverter.convertirAEntity(mesa));
+	public Table agregar(Table mesa) {
+		MesaEntity tableEntity = entityManager.merge(MesaConverter.convertirAEntity(mesa));
+		return MesaConverter.convertirADominio(tableEntity);
 	}
 
 	@Override

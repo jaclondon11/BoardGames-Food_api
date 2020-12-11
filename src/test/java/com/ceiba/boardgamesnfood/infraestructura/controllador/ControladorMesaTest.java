@@ -34,7 +34,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarMesaSiExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", "01")
+				.get("/api/mesa/{codigo}", "01")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.code").value("01"));
@@ -43,7 +43,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarNotFoundSiMesaNoExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", "00")
+				.get("/api/mesa/{codigo}", "00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isNotFound())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nombreExcepcion").value(EntityNoEncontradaException.class.getSimpleName()));	
@@ -53,7 +53,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarMesas() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/")
+				.get("/api/mesa")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))
@@ -65,7 +65,7 @@ public class ControladorMesaTest {
 		
 		ComandoTable comandoMesa = new MesaTestDataBuilder().buildComando();
 		mvc.perform(MockMvcRequestBuilders
-				.post("/mesa")
+				.put("/api/mesa")
 				.content(objectMapper.writeValueAsString(comandoMesa))
 				.contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -73,7 +73,7 @@ public class ControladorMesaTest {
 				.andExpect(status().isOk());
 		
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/{codigo}", comandoMesa.getCode())
+				.get("/api/mesa/{codigo}", comandoMesa.getCode())
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.code").value(comandoMesa.getCode()));
@@ -82,7 +82,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarMesasDisponiblesSiFechaHoraEsDisponible() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/mesa/disponibles/{fecha}", "2020-12-04-15:00:00")
+				.get("/api/mesa/disponibles/{fecha}", "2020-12-04-15:00:00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))

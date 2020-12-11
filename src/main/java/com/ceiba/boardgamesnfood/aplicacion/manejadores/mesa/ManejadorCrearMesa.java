@@ -21,8 +21,8 @@ public class ManejadorCrearMesa {
 
 	
 	@Transactional
-	public void ejecutar(ComandoTable comandoMesa) {
+	public Table ejecutar(ComandoTable comandoMesa) {
 		Table mesa = this.fabricaMesa.crearMesa(comandoMesa);
-		this.servicioCrearMesa.ejecutar(mesa);
+		return this.servicioCrearMesa.ejecutar(mesa);
 	}
 }

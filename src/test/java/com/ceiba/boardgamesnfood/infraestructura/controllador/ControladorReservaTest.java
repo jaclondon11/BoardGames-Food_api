@@ -37,7 +37,7 @@ public class ControladorReservaTest {
 	@Test
 	public void debeRetornarReservaSiExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/reserva/{id}", 1L)
+				.get("/api/reserva/{id}", 1L)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.titular").value("TITULAR_1"))
@@ -47,7 +47,7 @@ public class ControladorReservaTest {
 	@Test
 	public void debeRetornarNotFoundSiReservaNoExiste() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/reserva/{id}", 0L)
+				.get("/api/reserva/{id}", 0L)
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isNotFound())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.nombreExcepcion").value(EntityNoEncontradaException.class.getSimpleName()));	
@@ -65,7 +65,7 @@ public class ControladorReservaTest {
 				.getComando();
 		
 		mvc.perform(MockMvcRequestBuilders
-				.post("/reserva")
+				.post("/api/reserva")
 				.content(objectMapper.writeValueAsString(comandoReserva))
 				.contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

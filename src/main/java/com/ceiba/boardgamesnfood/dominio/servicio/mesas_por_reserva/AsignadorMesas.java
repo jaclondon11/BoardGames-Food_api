@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.MesasPorReserva;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.builder.MesasPorReservaBuilder;
 import com.ceiba.boardgamesnfood.dominio.excepcion.CantidadPersonasSuperadasException;
 import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradasException;

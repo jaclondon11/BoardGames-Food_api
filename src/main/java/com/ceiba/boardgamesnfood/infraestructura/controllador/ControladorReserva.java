@@ -18,7 +18,7 @@ import com.ceiba.boardgamesnfood.dominio.Reserva;
 
 
 @RestController
-@RequestMapping("/reserva")
+@RequestMapping("/api/reserva")
 public class ControladorReserva {
 	private final ManejadorObtenerReserva manejadorObtenerReserva;
 	private final ManejadorGenerarReserva manejadorGenerarReserva;

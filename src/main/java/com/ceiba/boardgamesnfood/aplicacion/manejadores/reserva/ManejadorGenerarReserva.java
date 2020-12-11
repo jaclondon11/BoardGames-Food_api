@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
-import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
+import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.servicio.mesas_por_reserva.ServicioObtenerMesasDisponibles;
 import com.ceiba.boardgamesnfood.dominio.servicio.reserva.ServicioGenerarReserva;
 

@@ -18,8 +18,9 @@ public interface RepositorioMesa {
 	 * Permite agregar una mesa al repositorio
 	 * 
 	 * @param mesa
+	 * @return 
 	 */
-	void agregar(Table mesa);
+	Table agregar(Table mesa);
 	
 	/**
 	 * Permite obtener todas las mesas 
