@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class BoardgamesnfoodApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoardgamesnfoodApplication.class, args);
+		SpringApplication.run(BoardgamesnfoodApplication.class);
 	}
 
 }
