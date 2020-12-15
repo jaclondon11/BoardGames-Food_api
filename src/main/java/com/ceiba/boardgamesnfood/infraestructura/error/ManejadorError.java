@@ -17,6 +17,7 @@ import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradas
 public class ManejadorError extends ResponseEntityExceptionHandler {
 
     private static final String OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR = "Ocurrió un error favor contactar al administrador.";
+    private static final String MENSAJE_UNIQUE_KEY = "La entidad ya existe";
 
     private static final ConcurrentHashMap<String, Integer> CODIGOS_ESTADO = new ConcurrentHashMap<>();
 
@@ -38,6 +39,9 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         Integer codigo = CODIGOS_ESTADO.get(excepcionNombre);
 
         if (codigo != null) {
+        	if (mensaje != null && mensaje.contains("UK")) {
+        		mensaje = MENSAJE_UNIQUE_KEY;
+			}
             Error error = new Error(excepcionNombre, mensaje);
             resultado = new ResponseEntity<>(error, HttpStatus.valueOf(codigo));
         } else {

@@ -47,7 +47,7 @@ public class ReservaTestDataBuilder {
 	}
 	
 	public ComandoReserva getComando() {
-		return new ComandoReserva(titular, juego, cantidadPersonas, fechaInicioReserva);
+		return new ComandoReserva(titular, juego.toString(), cantidadPersonas, fechaInicioReserva);
 	}
 
 

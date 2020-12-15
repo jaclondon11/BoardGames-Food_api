@@ -7,11 +7,11 @@ public class Reserva {
 
 	private Long id;
 	private List<MesasPorReserva> mesas;
-	private Date fechaInicioReserva;
-	private Date fechaFinReserva;
-	private int cantidadPersonas;
+	private Date startReservationDate;
+	private Date endReservationDate;
+	private int numberPeople;
 	private String titular;
-	private JuegoType juego;
+	private JuegoType game;
 
 	/**
 	 * 
@@ -21,45 +21,44 @@ public class Reserva {
 		super();
 		this.id = id;
 	}
-
+	
 	/**
 	 * 
-	 * @param fechaInicioReserva
-	 * @param cantidadPersonas
+	 * @param startReservationDate
+	 * @param numberPeople
 	 * @param titular
-	 * @param juego
+	 * @param game
 	 */
-	public Reserva(Date fechaInicioReserva, int cantidadPersonas, String titular, JuegoType juego) {
+	public Reserva(Date startReservationDate, int numberPeople, String titular, JuegoType game) {
 		super();
-		this.fechaInicioReserva = fechaInicioReserva;
-		this.cantidadPersonas = cantidadPersonas;
+		this.startReservationDate = startReservationDate;
+		this.numberPeople = numberPeople;
 		this.titular = titular;
-		this.juego = juego;
+		this.game = game;
 	}
 
 	/**
 	 * Full constructor
-	 * 
 	 * @param id
-	 * @param list
-	 * @param fechaInicioReserva
-	 * @param fechaFinReserva
-	 * @param cantidadPersonas
+	 * @param mesas
+	 * @param startReservationDate
+	 * @param endReservationDate
+	 * @param numberPeople
 	 * @param titular
-	 * @param juego
+	 * @param game
 	 */
-	public Reserva(Long id, List<MesasPorReserva> mesas, Date fechaInicioReserva, Date fechaFinReserva,
-			int cantidadPersonas, String titular, JuegoType juego) {
+	public Reserva(Long id, List<MesasPorReserva> mesas, Date startReservationDate, Date endReservationDate,
+			int numberPeople, String titular, JuegoType game) {
 		super();
 		this.id = id;
 		this.mesas = mesas;
-		this.fechaInicioReserva = fechaInicioReserva;
-		this.fechaFinReserva = fechaFinReserva;
-		this.cantidadPersonas = cantidadPersonas;
+		this.startReservationDate = startReservationDate;
+		this.endReservationDate = endReservationDate;
+		this.numberPeople = numberPeople;
 		this.titular = titular;
-		this.juego = juego;
+		this.game = game;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -69,15 +68,15 @@ public class Reserva {
 	}
 
 	public Date getFechaInicioReserva() {
-		return fechaInicioReserva;
+		return startReservationDate;
 	}
 
 	public Date getFechaFinReserva() {
-		return fechaFinReserva;
+		return endReservationDate;
 	}
 
 	public int getCantidadPersonas() {
-		return cantidadPersonas;
+		return numberPeople;
 	}
 
 	public String getTitular() {
@@ -85,7 +84,7 @@ public class Reserva {
 	}
 
 	public JuegoType getJuego() {
-		return juego;
+		return game;
 	}
 
 }

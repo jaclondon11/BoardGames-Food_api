@@ -6,12 +6,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
+import com.ceiba.boardgamesnfood.dominio.JuegoType;
 import com.ceiba.boardgamesnfood.dominio.Reserva;
 import com.ceiba.boardgamesnfood.dominio.Table;
 import com.ceiba.boardgamesnfood.dominio.servicio.mesas_por_reserva.ServicioObtenerMesasDisponibles;
 import com.ceiba.boardgamesnfood.dominio.servicio.reserva.ServicioGenerarReserva;
 
 @Component
+
 public class ManejadorGenerarReserva {
 	
 	private final ServicioGenerarReserva servicioGenerarReserva;
@@ -28,17 +30,15 @@ public class ManejadorGenerarReserva {
 	@Transactional
 	public Reserva ejecutar(ComandoReserva comandoReserva) {
 		Reserva prospectoReserva = new Reserva(
-				comandoReserva.getFechaReserva(),
-				comandoReserva.getCantidadPersonas(),
+				comandoReserva.getReservationDate(),
+				comandoReserva.getNumberPeople(),
 				comandoReserva.getTitular(),
-				comandoReserva.getJuego());
+				JuegoType.valueOf(comandoReserva.getGame()));
 		
 		List<Table> mesas = servicioObtenerMesasDisponibles
 				.obtenerMesasDisponiblesByFecha(prospectoReserva.getFechaInicioReserva());
 		
 		return this.servicioGenerarReserva.generarReserva(prospectoReserva, mesas);
 	}
-	
-	
 	
 }

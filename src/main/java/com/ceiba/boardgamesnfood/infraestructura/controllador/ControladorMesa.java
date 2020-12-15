@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoReserva;
 import com.ceiba.boardgamesnfood.aplicacion.comando.ComandoTable;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorCrearMesa;
 import com.ceiba.boardgamesnfood.aplicacion.manejadores.mesa.ManejadorObtenerMesa;
@@ -23,7 +24,6 @@ import com.ceiba.boardgamesnfood.dominio.Table;
 @RestController
 @RequestMapping("/api/mesa")
 public class ControladorMesa {
-		private static final String DATE_TIME_FORMAT = "yyyy-MM-dd-HH:mm:ss";
 		
 		private final ManejadorCrearMesa manejadorCrearMesa;
 		private final ManejadorObtenerMesa manejadorObtenerMesa;
@@ -60,7 +60,7 @@ public class ControladorMesa {
 	@GetMapping("/disponibles/{fechaHora}")
 	public List<Table> obtenerMesasDisponibles(
 			@PathVariable(name = "fechaHora")
-			@DateTimeFormat(pattern = DATE_TIME_FORMAT)
+			@DateTimeFormat(pattern = ComandoReserva.DATE_TIME_FORMAT)
 			Date fecha) {
 		return this.manejadorObtenerMesasDisponibles.ejecutar(fecha);
 	}

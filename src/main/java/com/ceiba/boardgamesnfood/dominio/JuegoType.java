@@ -10,28 +10,28 @@ public enum JuegoType {
 	
 	public static JuegoType fromString(String value) {
         for (JuegoType juegoType : values()) {
-            if (juegoType.nombre.equalsIgnoreCase(value)) {
+            if (juegoType.gameName.equalsIgnoreCase(value)) {
                 return juegoType;
             }
         }
         throw new IllegalArgumentException(value + " is not a JuegoType");
     }
 	
-	private final String nombre;
+	private final String gameName;
 	private final int cantidadJugadoresMinima;
 	private final int cantidadJugadoresMaxima;
 	private final int duracionMediaMinutos;
 
 	private JuegoType(String nombre, int cantidadJugadoresMinima, int cantidadJugadoresMaxima,
 			int duracionMediaMinutos) {
-		this.nombre = nombre;
+		this.gameName = nombre;
 		this.cantidadJugadoresMinima = cantidadJugadoresMinima;
 		this.cantidadJugadoresMaxima = cantidadJugadoresMaxima;
 		this.duracionMediaMinutos = duracionMediaMinutos;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getGameName() {
+		return gameName;
 	}
 
 	public int getCantidadJugadoresMinima() {

@@ -65,7 +65,7 @@ public class ControladorReservaTest {
 				.getComando();
 		
 		mvc.perform(MockMvcRequestBuilders
-				.post("/api/reserva")
+				.put("/api/reserva")
 				.content(objectMapper.writeValueAsString(comandoReserva))
 				.contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

@@ -10,7 +10,7 @@ public class JuegoTypeTest {
 	public void debeConvertirCorrectamenteDesdeString() {
 		JuegoType juegoCatan = JuegoType.CATAN;
 		JuegoType juegoCatanExpected = JuegoType.CATAN;
-		assertThat(JuegoType.fromString(juegoCatan.getNombre()).equals(juegoCatanExpected));
+		assertThat(JuegoType.fromString(juegoCatan.getGameName()).equals(juegoCatanExpected));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
