@@ -41,7 +41,7 @@ public class ControladorReservaTest {
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.titular").value("TITULAR_1"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.juego").value(JuegoType.EXPLODING_KITTENS.name()));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.game").value(JuegoType.EXPLODING_KITTENS.name()));
 	}
 	
 	@Test

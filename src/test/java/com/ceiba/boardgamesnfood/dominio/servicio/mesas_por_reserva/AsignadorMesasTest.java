@@ -5,6 +5,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -18,7 +21,8 @@ import com.ceiba.boardgamesnfood.testdatabuilder.ReservaTestDataBuilder;
 public class AsignadorMesasTest {
 	
 	@Test
-	public void debeAsignar1MesaCuandoCantidadPersonasIgual_4() {
+	public void debeAsignar1MesaCuandoCantidadPersonasIgual_4() throws ParseException {
+		Date fecha = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").parse("2020-12-04-15:00:00");
 		
 		AsignadorMesas asignadorMesas = new AsignadorMesas();
 		
@@ -26,6 +30,7 @@ public class AsignadorMesasTest {
 				.conTitular("titular")
 				.conJuego(JuegoType.EXPLODING_KITTENS)
 				.conCantidadPersonas(4)
+				.conFecha(fecha)
 				.getResult();
 		
 		List<MesasPorReserva> mesasReserva = asignadorMesas.asignarMesasReserva(
@@ -39,7 +44,9 @@ public class AsignadorMesasTest {
 	}
 	
 	@Test
-	public void debeAsignar2MesasCuandoCantidadPersonasIgual_8() {
+	public void debeAsignar2MesasCuandoCantidadPersonasIgual_8() throws ParseException {
+		Date fecha = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss").parse("2020-12-04-15:00:00");
+
 		
 		AsignadorMesas asignadorMesas = new AsignadorMesas();
 		
@@ -47,6 +54,7 @@ public class AsignadorMesasTest {
 				.conTitular("titular")
 				.conJuego(JuegoType.EXPLODING_KITTENS)
 				.conCantidadPersonas(8)
+				.conFecha(fecha)
 				.getResult();
 		
 		List<MesasPorReserva> mesasReserva = asignadorMesas.asignarMesasReserva(

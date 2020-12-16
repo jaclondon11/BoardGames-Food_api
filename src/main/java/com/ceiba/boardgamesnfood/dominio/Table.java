@@ -1,6 +1,11 @@
 package com.ceiba.boardgamesnfood.dominio;
 
+import org.springframework.util.StringUtils;
+
+import com.ceiba.boardgamesnfood.dominio.excepcion.DominioException;
+
 public class Table {
+	private static final String CODE_ATTRIBUTE = "code";
 	private Long id;
 	private String code;
 	
@@ -14,6 +19,13 @@ public class Table {
 
 	public Table(Long id, String code) {
 		this.id = id;
+		setCode(code);
+	}
+	
+	private void setCode(String code) {
+		if (StringUtils.isEmpty(code)) {
+			throw new DominioException(CODE_ATTRIBUTE, DominioException.ERRORES_DOMINIO.EMPTY);
+		}
 		this.code = code;
 	}
 

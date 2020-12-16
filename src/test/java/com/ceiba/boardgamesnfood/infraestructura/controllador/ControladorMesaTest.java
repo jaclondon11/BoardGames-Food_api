@@ -82,7 +82,7 @@ public class ControladorMesaTest {
 	@Test
 	public void debeRetornarMesasDisponiblesSiFechaHoraEsDisponible() throws Exception {
 		mvc.perform(MockMvcRequestBuilders
-				.get("/api/mesa/disponibles/{fecha}", "2020-12-04-15:00:00")
+				.get("/api/mesa/disponibles/{codigo}", "2020-12-04-15:00:00")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[0].code").value("01"))

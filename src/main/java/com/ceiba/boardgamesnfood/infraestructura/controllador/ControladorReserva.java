@@ -2,10 +2,6 @@ package com.ceiba.boardgamesnfood.infraestructura.controllador;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import javax.validation.Valid;
-
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,7 +28,7 @@ public class ControladorReserva {
 	}
 
 	@PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public Reserva generarReserva(@Valid @RequestBody ComandoReserva comandoReserva) {
+	public Reserva generarReserva(@RequestBody ComandoReserva comandoReserva) {
 		return manejadorGenerarReserva.ejecutar(comandoReserva);
 	}
 
@@ -42,14 +38,5 @@ public class ControladorReserva {
 		Long id) {
 		return this.manejadorObtenerReserva.ejecutar(id);
 	}
-	
-	@ExceptionHandler
-	public void handle(HttpMessageNotReadableException e) {
-	    System.out.println(e);
-	    throw e;
-	}
-	
-	
-	
 	
 }

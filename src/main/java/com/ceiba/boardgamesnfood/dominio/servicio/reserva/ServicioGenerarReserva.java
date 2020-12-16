@@ -29,7 +29,7 @@ public class ServicioGenerarReserva {
 	}
 
 	public Reserva generarReserva(Reserva prospectoReserva, List<Table> mesasDisponibles) {
-		Date fechaFinReserva = obtenerFechaFinReserva(prospectoReserva.getFechaInicioReserva());
+		Date fechaFinReserva = obtenerFechaFinReserva(prospectoReserva.getStartReservationDate());
 		
 		List<MesasPorReserva> mesasReserva = asignadorMesas.asignarMesasReserva(prospectoReserva, mesasDisponibles);
 		
@@ -46,8 +46,8 @@ public class ServicioGenerarReserva {
 	private Reserva asignarMesasYFechaAReserva(Reserva prospectoReserva, List<MesasPorReserva> mesasDisponibles,
 			Date fechaFinReserva) {
 
-		return new Reserva(null, mesasDisponibles, prospectoReserva.getFechaInicioReserva(), fechaFinReserva,
-				prospectoReserva.getCantidadPersonas(), prospectoReserva.getTitular(), prospectoReserva.getJuego());
+		return new Reserva(null, mesasDisponibles, prospectoReserva.getStartReservationDate(), fechaFinReserva,
+				prospectoReserva.getNumberPeople(), prospectoReserva.getTitular(), prospectoReserva.getGame());
 	}
 	
 	

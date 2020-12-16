@@ -20,11 +20,11 @@ public class AsignadorMesas {
 	
 	public List<MesasPorReserva> asignarMesasReserva(Reserva reserva, List<Table> mesasDisponibles) {
 		List<MesasPorReserva> mesasPorReservas = new ArrayList<>();
-		if (reserva.getCantidadPersonas() > reserva.getJuego().getCantidadJugadoresMaxima()) {
+		if (reserva.getNumberPeople() > reserva.getGame().getCantidadJugadoresMaxima()) {
 			throw new CantidadPersonasSuperadasException();
 		}
 		
-		if (reserva.getCantidadPersonas() > CANTIDAD_MAXIMA_PERSONAS_POR_MESA) {
+		if (reserva.getNumberPeople() > CANTIDAD_MAXIMA_PERSONAS_POR_MESA) {
 			validarReservaGrande(mesasDisponibles);
 			mesasPorReservas.add(asignarMesaDisponible(reserva, mesasDisponibles.get(1)));
 		}

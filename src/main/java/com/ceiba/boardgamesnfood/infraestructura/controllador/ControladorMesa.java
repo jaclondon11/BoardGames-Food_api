@@ -3,8 +3,6 @@ package com.ceiba.boardgamesnfood.infraestructura.controllador;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +38,6 @@ public class ControladorMesa {
 		this.manejadorObtenerMesas = manejadorObtenerMesas;
 	}
 
-	@Valid
 	@PutMapping
 	public Table agregar(@RequestBody
 			ComandoTable comandoMesa) {
@@ -64,4 +61,5 @@ public class ControladorMesa {
 			Date fecha) {
 		return this.manejadorObtenerMesasDisponibles.ejecutar(fecha);
 	}
+	
 }

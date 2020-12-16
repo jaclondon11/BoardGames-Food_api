@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ceiba.boardgamesnfood.dominio.excepcion.CantidadPersonasSuperadasException;
+import com.ceiba.boardgamesnfood.dominio.excepcion.DominioException.ERRORES_DOMINIO;
 import com.ceiba.boardgamesnfood.dominio.excepcion.EntityNoEncontradaException;
 import com.ceiba.boardgamesnfood.dominio.excepcion.MesasDisponiblesNoEncontradasException;
 
@@ -26,7 +27,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
         CODIGOS_ESTADO.put(EntityNoEncontradaException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
         CODIGOS_ESTADO.put(MesasDisponiblesNoEncontradasException.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
         CODIGOS_ESTADO.put(DataIntegrityViolationException.class.getSimpleName(), HttpStatus.UNPROCESSABLE_ENTITY.value());
-        
+        CODIGOS_ESTADO.put(ERRORES_DOMINIO.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         //en caso de tener otra excepcion matricularla aca
     }
 

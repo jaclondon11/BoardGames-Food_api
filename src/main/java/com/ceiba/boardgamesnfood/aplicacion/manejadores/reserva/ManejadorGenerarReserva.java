@@ -36,7 +36,7 @@ public class ManejadorGenerarReserva {
 				JuegoType.valueOf(comandoReserva.getGame()));
 		
 		List<Table> mesas = servicioObtenerMesasDisponibles
-				.obtenerMesasDisponiblesByFecha(prospectoReserva.getFechaInicioReserva());
+				.obtenerMesasDisponiblesByFecha(prospectoReserva.getStartReservationDate());
 		
 		return this.servicioGenerarReserva.generarReserva(prospectoReserva, mesas);
 	}

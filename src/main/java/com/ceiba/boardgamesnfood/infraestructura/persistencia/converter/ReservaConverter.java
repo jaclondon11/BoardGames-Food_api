@@ -30,10 +30,10 @@ public final class ReservaConverter {
 		ReservaEntity reservaEntity = new ReservaEntity();
 		
 		reservaEntity.setId(reserva.getId());
-		reservaEntity.setCantidadPersonas(reserva.getCantidadPersonas());
-		reservaEntity.setFechaFinReserva(reserva.getFechaFinReserva());
-		reservaEntity.setFechaInicioReserva(reserva.getFechaInicioReserva());
-		reservaEntity.setJuego(reserva.getJuego());
+		reservaEntity.setCantidadPersonas(reserva.getNumberPeople());
+		reservaEntity.setFechaFinReserva(reserva.getEndReservationDate());
+		reservaEntity.setFechaInicioReserva(reserva.getStartReservationDate());
+		reservaEntity.setJuego(reserva.getGame());
 		reservaEntity.setTitular(reserva.getTitular());
 		reservaEntity.setMesas(MesasPorReservaConverter.convertirAEntityList(reserva.getMesas()));
 
